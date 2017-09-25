@@ -20,6 +20,7 @@ find_package(catkin REQUIRED COMPONENTS
   op3_kinematics_dynamics
   robotis_controller_msgs
   robotis_controller
+  op3_offset_tuner_msgs
 )
 
 find_package(Eigen REQUIRED)
