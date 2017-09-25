@@ -9,15 +9,20 @@ project(op3_action_editor)
 ################################################################################
 find_package(catkin REQUIRED COMPONENTS
   roscpp
-  std_msgs  
+  std_msgs
   dynamixel_sdk
   robotis_framework_common
   robotis_device
   robotis_controller
   robotis_controller_msgs
-  robotis_math  
+  robotis_math
   op3_action_module
+  op3_action_module_msgs
 )
+
+## YAML-CPP
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(YAML_CPP REQUIRED yaml-cpp)
 
 ################################################################################
 # Declare ROS messages, services and actions
@@ -41,6 +46,7 @@ catkin_package(
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
+  ${YAML_CPP_INCLUDEDIR}
 )
 
 add_executable(op3_action_editor 
@@ -49,8 +55,9 @@ add_executable(op3_action_editor
 )
 
 target_link_libraries(op3_action_editor
-   ncurses
-   ${catkin_LIBRARIES}
+  ncurses
+  yaml-cpp
+  ${catkin_LIBRARIES}
 )
 
 ################################################################################
